@@ -1,15 +1,14 @@
-// screens/recuperar_sanguchitos.dart
 import 'package:flutter/material.dart';
 
 class RecuperarSanguchitos extends StatefulWidget {
-  const RecuperarSanguchitos({super.key});
+  const RecuperarSanguchitos({Key? key}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
   _RecuperarSanguchitosState createState() => _RecuperarSanguchitosState();
 }
 
 class _RecuperarSanguchitosState extends State<RecuperarSanguchitos> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
 
   @override
@@ -20,25 +19,41 @@ class _RecuperarSanguchitosState extends State<RecuperarSanguchitos> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            TextField(
-              controller: _emailController,
-              keyboardType: TextInputType.emailAddress,
-              decoration: const InputDecoration(
-                labelText: 'Correo electrónico',
-                hintText: 'example@example.com',
+        child: Form(
+          key: _formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              TextFormField(
+                controller: _emailController,
+                keyboardType: TextInputType.emailAddress,
+                decoration: const InputDecoration(
+                  labelText: 'Correo electrónico',
+                  hintText: 'example@example.com',
+                ),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Por favor, ingrese su correo electrónico';
+                  }
+                  if (!RegExp(r'\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b')
+                      .hasMatch(value)) {
+                    return 'Por favor, ingrese un correo electrónico válido';
+                  }
+                  return null;
+                },
               ),
-            ),
-            SizedBox(height: 16.0),
-            ElevatedButton(
-              onPressed: () {
-                // Aquí va el código para recuperar la cuenta
-              },
-              child: const Text('Recuperar'),
-            ),
-          ],
+              SizedBox(height: 16.0),
+              ElevatedButton(
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    // Aquí se puede agregar el código para recuperar la cuenta
+                    // Usar _emailController.text para obtener el correo electrónico
+                  }
+                },
+                child: const Text('Recuperar'),
+              ),
+            ],
+          ),
         ),
       ),
     );
