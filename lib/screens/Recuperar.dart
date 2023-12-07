@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class RecuperarSanguchitos extends StatefulWidget {
   const RecuperarSanguchitos({Key? key}) : super(key: key);
@@ -10,6 +11,17 @@ class RecuperarSanguchitos extends StatefulWidget {
 class _RecuperarSanguchitosState extends State<RecuperarSanguchitos> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
+
+  Future<void> _resetPassword(String email) async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      // Aquí puedes mostrar un mensaje de éxito o redirigir a otra pantalla
+      print('Se ha enviado un correo electrónico para restablecer la contraseña');
+    } catch (e) {
+      // Manejar errores, como por ejemplo si el correo no está registrado
+      print('Error al enviar el correo para restablecer la contraseña: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,33 +36,43 @@ class _RecuperarSanguchitosState extends State<RecuperarSanguchitos> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              const Text(
+                'Recuperar Contraseña',
+                style: TextStyle(
+                  fontSize: 36,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 30),
               TextFormField(
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
                 decoration: const InputDecoration(
                   labelText: 'Correo electrónico',
-                  hintText: 'example@example.com',
+                  prefixIcon: Icon(Icons.email),
+                  border: OutlineInputBorder(),
                 ),
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Por favor, ingrese su correo electrónico';
                   }
-                  if (!RegExp(r'\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b')
-                      .hasMatch(value)) {
+                  if (!RegExp(r'\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b').hasMatch(value)) {
                     return 'Por favor, ingrese un correo electrónico válido';
                   }
                   return null;
                 },
               ),
-              SizedBox(height: 16.0),
-              ElevatedButton(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    // Aquí se puede agregar el código para recuperar la cuenta
-                    // Usar _emailController.text para obtener el correo electrónico
-                  }
-                },
-                child: const Text('Recuperar'),
+              const SizedBox(height: 20),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      _resetPassword(_emailController.text);
+                    }
+                  },
+                  child: const Text('Recuperar'),
+                ),
               ),
             ],
           ),
