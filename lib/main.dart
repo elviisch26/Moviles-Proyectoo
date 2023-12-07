@@ -38,9 +38,6 @@ class MyApp extends StatelessWidget {
         '/Clasicos.dart': (context) => HomeScreen(),
         '/payment.dart': (context) => PaymentScreen(),
         '/Login.dart': (context) => LoginScreen(),
-
-        
-        
       },
     );
   }
