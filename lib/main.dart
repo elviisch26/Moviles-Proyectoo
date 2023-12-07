@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:proyecto/screens/Clasicos.dart';
 import 'package:proyecto/screens/Login.dart';
 import 'package:proyecto/screens/Register.dart';
+import 'package:proyecto/screens/payment.dart';
 import 'screens/Login.dart';  // Importa la pantalla que creamos
 import 'screens/Recuperar.dart';  // Importa la pantalla que creamos
 
@@ -27,7 +28,8 @@ class MyApp extends StatelessWidget {
         '/Recuperar.dart': (context) => RecuperarSanguchitos(),
         '/Register.dart': (context) => RegisterScreen(),
         '/Clasicos.dart': (context) => SanguchitosScreen(),
-
+        '/payment.dart': (context) => PaymentScreen(),
+        
         
       },
     );

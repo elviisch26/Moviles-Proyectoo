@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'payment.dart';
 class SanguchitosScreen extends StatelessWidget {
   const SanguchitosScreen({Key? key});
 
@@ -36,7 +36,7 @@ class SanguchitosScreen extends StatelessWidget {
               const SizedBox(height: 40),
               ElevatedButton(
                 onPressed: () {
-                  // Acción cuando se presiona el botón Premium
+                  Navigator.pushNamed(context, '/payment.dart');
                 },
                 child: const Text('Premium'),
                 style: ElevatedButton.styleFrom(
