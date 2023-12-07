@@ -1,80 +1,124 @@
-// screens/register_screen.dart
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({Key? key}) : super(key: key);
 
   @override
-  _RegisterScreenState createState() => _RegisterScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
-  final _formKey = GlobalKey<FormState>();
+class _SignUpScreenState extends State<SignUpScreen> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passController = TextEditingController();
+
+  String _email = "";
+  String _password = "";
+
+  void _handleSignUp() async {
+    try {
+      UserCredential userCredential =
+          await _auth.createUserWithEmailAndPassword(
+        email: _email,
+        password: _password,
+      );
+      print("User Registered ${userCredential.user!.email}");
+    } catch (e) {
+      print("Error During Registration: $e");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Registrarse Sanguchitos'),
+        title: const Text("Registro"),
       ),
-      body: Form(
-        key: _formKey,
-        child: Column(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextFormField(
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                "Registrarse",
+                style: TextStyle(
+                  fontSize: 36,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 30),
+              TextFormField(
+                controller: _emailController,
+                keyboardType: TextInputType.emailAddress,
                 decoration: const InputDecoration(
-                  labelText: 'Nombres y apellidos',
+                  labelText: "Correo",
+                  prefixIcon: Icon(Icons.email),
+                  border: OutlineInputBorder(),
                 ),
                 validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Por favor, ingrese sus nombres y apellidos';
+                  if (value == null || value.isEmpty) {
+                    return "Por favor, introduzca su correo";
                   }
                   return null;
                 },
+                onChanged: (value) {
+                  setState(() {
+                    _email = value;
+                  });
+                },
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextFormField(
+              const SizedBox(height: 20),
+              TextFormField(
+                controller: _passController,
+                obscureText: true,
                 decoration: const InputDecoration(
-                  labelText: 'Email',
+                  labelText: "Contraseña",
+                  prefixIcon: Icon(Icons.lock),
+                  border: OutlineInputBorder(),
                 ),
                 validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Por favor, ingrese su email';
+                  if (value == null || value.isEmpty) {
+                    return "Por favor, introduzca su contraseña";
                   }
                   return null;
                 },
+                onChanged: (value) {
+                  setState(() {
+                    _password = value;
+                  });
+                },
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextFormField(
-                decoration: const InputDecoration(
-                  labelText: 'Contraseña',
+              const SizedBox(height: 30),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      _handleSignUp();
+                    }
+                  },
+                  child: const Text("Enviar"),
                 ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Por favor, ingrese su contraseña';
-                  }
-                  return null;
-                },
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ElevatedButton(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    // Procesa el registro
-                  }
+              const SizedBox(height: 20),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/Login.dart');
                 },
-                child: const Text('Registrarse'),
+                child: const Text(
+                  '¿Ya tienes cuenta? Inicia sesión',
+                  style: TextStyle(
+                    color: Colors.blue,
+                    decoration: TextDecoration.underline,
+                  ),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
