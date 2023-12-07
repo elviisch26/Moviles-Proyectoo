@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:proyecto/screens/Recuperar.dart';
 import 'package:proyecto/screens/Register.dart';
 import 'package:proyecto/screens/home_screen.dart';
 
@@ -82,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
               TextFormField(
                 controller: _passController,
                 obscureText: true,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: "Contraseña",
                   prefixIcon: Icon(Icons.lock),
                   border: OutlineInputBorder(),
@@ -98,6 +99,24 @@ class _LoginScreenState extends State<LoginScreen> {
                     _password = value;
                   });
                 },
+              ),
+              const SizedBox(height: 20),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => RecuperarSanguchitos(),
+                    ),
+                  );
+                },
+                child: Text(
+                  '¿Olvidaste tu contraseña? Recupérala aquí',
+                  style: TextStyle(
+                    color: Colors.blue,
+                    decoration: TextDecoration.underline,
+                  ),
+                ),
               ),
               const SizedBox(height: 30),
               SizedBox(
