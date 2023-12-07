@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:proyecto/screens/Register.dart';
-import 'package:proyecto/screens/Clasicos.dart';
+import 'package:proyecto/screens/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -29,7 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => SanguchitosScreen(),
+          builder: (context) => HomeScreen(),
         ),
       );
     } catch (e) {

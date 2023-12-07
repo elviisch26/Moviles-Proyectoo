@@ -38,6 +38,7 @@ dependencies:
   url_launcher: ^6.2.1
   firebase_core: ^2.24.1
   firebase_auth: ^4.15.1
+  provider: ^6.1.0
 
 dev_dependencies:
   flutter_test:

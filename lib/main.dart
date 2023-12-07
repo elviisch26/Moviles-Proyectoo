@@ -1,6 +1,6 @@
 // main.dart
 import 'package:flutter/material.dart';
-import 'package:proyecto/screens/Clasicos.dart';
+import 'package:proyecto/screens/home_screen.dart';
 import 'package:proyecto/screens/Login.dart';
 import 'package:proyecto/screens/Register.dart';
 import 'package:proyecto/screens/payment.dart';
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/Recuperar.dart': (context) => RecuperarSanguchitos(),
         '/Register.dart': (context) => SignUpScreen(),
-        '/Clasicos.dart': (context) => SanguchitosScreen(),
+        '/Clasicos.dart': (context) => HomeScreen(),
         '/payment.dart': (context) => PaymentScreen(),
         '/Login.dart': (context) => LoginScreen(),
 
