@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto/screens/payment.dart';
+import 'package:proyecto/screens/payment.dart'; 
 
 class ConfirmationScreen extends StatelessWidget {
   final List<Map<String, dynamic>> cartItems;
@@ -85,15 +85,12 @@ class ConfirmationScreen extends StatelessWidget {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Aquí puedes implementar la lógica para finalizar el pedido
-                // (por ejemplo, enviar la orden al servidor).
-                // Puedes navegar a la pantalla de inicio o mostrar un mensaje de confirmación.
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => PaymentScreen()),
+                  MaterialPageRoute(builder: (context) => PaymentScreen()), // Redirigir a PaymentScreen
                 );
               },
-              child: Text('Finalizar Pedido'),
+              child: Text('Continuar'),
             ),
           ],
         ),
