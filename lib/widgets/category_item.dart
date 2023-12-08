@@ -5,7 +5,7 @@ class CategoryItem extends StatelessWidget {
   final String categoryName;
   final String imageName;
 
-  CategoryItem({required this.categoryName, required this.imageName});
+  CategoryItem({required this.categoryName, required this.imageName,required Function() onTap});
 
   @override
   Widget build(BuildContext context) {
