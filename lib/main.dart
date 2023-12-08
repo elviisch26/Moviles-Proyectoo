@@ -1,9 +1,9 @@
 // main.dart
 import 'package:flutter/material.dart';
-import 'package:proyecto/screens/home_screen.dart';
-import 'package:proyecto/screens/Login.dart';
-import 'package:proyecto/screens/Register.dart';
-import 'package:proyecto/screens/payment.dart';
+import 'package:bcados/screens/home_screen.dart';
+import 'package:bcados/screens/Login.dart';
+import 'package:bcados/screens/Register.dart';
+import 'package:bcados/screens/payment.dart';
 import 'screens/Recuperar.dart';  // Importa la pantalla que creamos
 
 import 'package:firebase_core/firebase_core.dart';

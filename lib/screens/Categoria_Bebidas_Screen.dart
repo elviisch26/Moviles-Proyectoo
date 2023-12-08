@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto/models/pedido.dart';
+import 'package:bcados/models/pedido.dart';
 
 class CategoriaBebidasScreen extends StatelessWidget {
   final List<Pedido> bebidas;

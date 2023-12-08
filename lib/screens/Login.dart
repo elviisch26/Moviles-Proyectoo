@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:proyecto/screens/Recuperar.dart';
-import 'package:proyecto/screens/Register.dart';
-import 'package:proyecto/screens/home_screen.dart';
+import 'package:bcados/screens/Recuperar.dart';
+import 'package:bcados/screens/Register.dart';
+import 'package:bcados/screens/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);

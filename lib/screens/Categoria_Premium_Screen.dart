@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto/models/pedido.dart';
+import 'package:bcados/models/pedido.dart';
 
 class CategoriaPremiumScreen extends StatelessWidget {
   final List<Pedido> premium;

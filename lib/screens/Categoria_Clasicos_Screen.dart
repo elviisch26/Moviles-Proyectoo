@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto/models/pedido.dart';
+import 'package:bcados/models/pedido.dart';
 
 class CategoriaClasicosScreen extends StatelessWidget {
   final List<Pedido> clasicos;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto/screens/category_details_screen.dart';
-import 'package:proyecto/widgets/category_item.dart';
+import 'package:bcados/screens/category_details_screen.dart';
+import 'package:bcados/widgets/category_item.dart';
 
 class HomeScreen extends StatelessWidget {
   @override

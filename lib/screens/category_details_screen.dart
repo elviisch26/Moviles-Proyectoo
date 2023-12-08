@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:proyecto/models/pedido.dart';
-import 'package:proyecto/screens/orden_confirmation_screen.dart';
+import 'package:bcados/models/pedido.dart';
+import 'package:bcados/screens/orden_confirmation_screen.dart';
 
 class CategoryDetailsScreen extends StatelessWidget {
   final String categoryName;
