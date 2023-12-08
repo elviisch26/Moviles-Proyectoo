@@ -29,7 +29,6 @@ class CategoryDetailsScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(' $categoryName'),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -38,7 +37,7 @@ class CategoryDetailsScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
-                'Productos en la categoría $categoryName:',
+                categoryName,
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -46,7 +45,7 @@ class CategoryDetailsScreen extends StatelessWidget {
               ),
             ),
             // Muestra la lista de productos
-            ListView.builder(
+             ListView.builder(
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
               itemCount: products.length,
@@ -68,7 +67,15 @@ class CategoryDetailsScreen extends StatelessWidget {
                         // Agrega más detalles del producto según tus necesidades
                       ],
                     ),
-                    // Agrega lógica para manejar la selección del producto
+                    trailing: ElevatedButton(
+                      onPressed: () {
+                        // Agrega lógica para manejar el evento del botón "Agregar al Carrito"
+                        // Puedes mostrar un SnackBar, agregar el producto a un carrito, etc.
+                        // Por ahora, solo imprime un mensaje en la consola.
+                        print('Producto agregado al carrito: ${product.nombre}');
+                      },
+                      child: Text('Agregar al Carrito'),
+                    ),
                     onTap: () {
                       // Puedes navegar a la pantalla de detalles del producto
                     },
@@ -82,4 +89,3 @@ class CategoryDetailsScreen extends StatelessWidget {
     );
   }
 }
-

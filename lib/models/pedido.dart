@@ -20,21 +20,21 @@ final clasicos = [
     id: 1,
     nombre: "Sanguchito de Pollo",
     precio: 6.25,
-    imagen: "assets/images/sanguchito1.jpg",
+    imagen: "assets/sam1.jpeg",
     descripcion: "Pan, pollo, lechuga, tomate, mayonesa, mostaza, ketchup, queso"
   ),
   Pedido(
     id: 2,
     nombre: "Sanguchito de Carne",
     precio: 6.25,
-    imagen: "assets/images/sanguchito2.jpg",
+    imagen: "assets/sam2.jpeg",
     descripcion: "Pan, carne, lechuga, tomate, mayonesa, mostaza, ketchup, queso"
   ),
   Pedido(
     id: 3,
     nombre: "Sanguchito de Jamón",
     precio: 6.25,
-    imagen: "assets/images/sanguchito3.jpg",
+    imagen: "assets/sam3.jpeg",
     descripcion: "Pan, jamón, lechuga, tomate, mayonesa, mostaza, ketchup, queso"
   ),
 ];
