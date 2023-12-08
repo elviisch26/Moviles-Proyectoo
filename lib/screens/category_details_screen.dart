@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto/models/pedido.dart';
+import 'package:proyecto/screens/orden_confirmation_screen.dart';
 
 class CategoryDetailsScreen extends StatelessWidget {
   final String categoryName;
   final String categoryImage;
 
-  CategoryDetailsScreen(
-      {required this.categoryName, required this.categoryImage});
+  CategoryDetailsScreen({
+    required this.categoryName,
+    required this.categoryImage,
+  });
 
   @override
   Widget build(BuildContext context) {
     List<Pedido> products;
 
-    // Cargar productos según la categoría
     switch (categoryName) {
       case 'Clasicos':
         products = clasicos;
@@ -29,6 +31,7 @@ class CategoryDetailsScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        title: Text(categoryName),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -44,8 +47,7 @@ class CategoryDetailsScreen extends StatelessWidget {
                 ),
               ),
             ),
-            // Muestra la lista de productos
-             ListView.builder(
+            ListView.builder(
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
               itemCount: products.length,
@@ -64,15 +66,16 @@ class CategoryDetailsScreen extends StatelessWidget {
                       children: [
                         Text('Precio: \$${product.precio.toStringAsFixed(2)}'),
                         Text('Descripción: ${product.descripcion}'),
-                        // Agrega más detalles del producto según tus necesidades
                       ],
                     ),
                     trailing: ElevatedButton(
                       onPressed: () {
-                        // Agrega lógica para manejar el evento del botón "Agregar al Carrito"
-                        // Puedes mostrar un SnackBar, agregar el producto a un carrito, etc.
-                        // Por ahora, solo imprime un mensaje en la consola.
-                        print('Producto agregado al carrito: ${product.nombre}');
+                        _addToCart(product, context);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Producto agregado al carrito: ${product.nombre}'),
+                          ),
+                        );
                       },
                       child: Text('Agregar al Carrito'),
                     ),
@@ -83,9 +86,150 @@ class CategoryDetailsScreen extends StatelessWidget {
                 );
               },
             ),
+            ElevatedButton(
+              onPressed: () {
+                // Ir al carrito cuando se hace clic en este botón
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => CartScreen(cartItems: _cartItems),
+                  ),
+                );
+              },
+              child: Text('Ver Carrito'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _addToCart(Pedido product, BuildContext context) {
+    _cartItems.add({
+      'id': product.id,
+      'name': product.nombre,
+      'price': product.precio,
+      'quantity': 1,
+    });
+  }
+}
+
+class CartScreen extends StatefulWidget {
+  final List<Map<String, dynamic>> cartItems;
+
+  CartScreen({required this.cartItems});
+
+  @override
+  _CartScreenState createState() => _CartScreenState();
+}
+
+class _CartScreenState extends State<CartScreen> {
+  void _removeItem(int index) {
+    setState(() {
+      _cartItems.removeAt(index);
+    });
+  }
+
+  void _incrementQuantity(int index) {
+    setState(() {
+      _cartItems[index]['quantity']++;
+    });
+  }
+
+  void _decrementQuantity(int index) {
+    setState(() {
+      if (_cartItems[index]['quantity'] > 1) {
+        _cartItems[index]['quantity']--;
+      }
+    });
+  }
+
+  double calculateSubtotal() {
+    double subtotal = 0;
+    for (var item in _cartItems) {
+      subtotal += item['price'] * item['quantity'];
+    }
+    return subtotal;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Carrito de compras'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+        child: Column(
+          children: [
+            Expanded(
+              child: ListView.builder(
+                itemCount: _cartItems.length,
+                itemBuilder: (context, index) {
+                  return Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Row(
+                        children: [
+                          // ... Agrega la imagen del producto aquí ...
+                          SizedBox(width: 10),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(_cartItems[index]['name']),
+                              Text('\$${_cartItems[index]['price']}'),
+                            ],
+                          ),
+                          Spacer(),
+                          IconButton(
+                            icon: Icon(Icons.remove_circle),
+                            onPressed: () => _removeItem(index),
+                          ),
+                          Text('${_cartItems[index]['quantity']}'),
+                          IconButton(
+                            icon: Icon(Icons.add_circle),
+                            onPressed: () => _incrementQuantity(index),
+                          ),
+                          IconButton(
+                            icon: Icon(Icons.remove_circle_outline),
+                            onPressed: () => _decrementQuantity(index),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Subtotal'),
+                Text('\$${calculateSubtotal().toStringAsFixed(2)}'),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Total'),
+                Text('\$${calculateSubtotal().toStringAsFixed(2)}'),
+              ],
+            ),
+            MaterialButton(
+              color: Colors.blue,
+              child: Text('Continuar'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ConfirmationScreen(cartItems: _cartItems)),
+                );
+                // Aquí puedes implementar la lógica para continuar con la compra
+              },
+            ),
           ],
         ),
       ),
     );
   }
 }
+
+List<Map<String, dynamic>> _cartItems = [];
