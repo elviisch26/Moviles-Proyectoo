@@ -5,15 +5,11 @@ class CategoryDetailsScreen extends StatelessWidget {
   final String categoryName;
   final String categoryImage;
 
-  CategoryDetailsScreen({required this.categoryName, required this.categoryImage});
+  CategoryDetailsScreen(
+      {required this.categoryName, required this.categoryImage});
 
   @override
   Widget build(BuildContext context) {
-    // Asegúrate de tener estos listados definidos y los datos correctos
-    List<Pedido> clasicos = [/* Lista de productos clásicos */];
-    List<Pedido> premium = [/* Lista de productos premium */];
-    List<Pedido> bebidas = [/* Lista de productos de bebidas */];
-
     List<Pedido> products;
 
     // Cargar productos según la categoría
@@ -56,13 +52,27 @@ class CategoryDetailsScreen extends StatelessWidget {
               itemCount: products.length,
               itemBuilder: (context, index) {
                 final product = products[index];
-                return ListTile(
-                  title: Text(product.nombre),
-                  subtitle: Text('Precio: ${product.precio.toStringAsFixed(2)}'),
-                  // Agrega más detalles del producto según tus necesidades
-                  onTap: () {
+                return Card(
+                  margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                  child: ListTile(
+                    title: Text(
+                      product.nombre,
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Precio: \$${product.precio.toStringAsFixed(2)}'),
+                        Text('Descripción: ${product.descripcion}'),
+                        // Agrega más detalles del producto según tus necesidades
+                      ],
+                    ),
                     // Agrega lógica para manejar la selección del producto
-                  },
+                    onTap: () {
+                      // Puedes navegar a la pantalla de detalles del producto
+                    },
+                  ),
                 );
               },
             ),
@@ -72,3 +82,4 @@ class CategoryDetailsScreen extends StatelessWidget {
     );
   }
 }
+

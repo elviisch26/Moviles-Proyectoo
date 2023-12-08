@@ -46,21 +46,21 @@ class HomeScreen extends StatelessWidget {
             SizedBox(height: 20), // Espaciado entre el texto y las categorías
             CategoryItem(
               categoryName: 'Clasicos',
-              imageName: 'idol.png',
+              imageName: 'logo.png',
               onTap: () {
                 navigateToCategoryDetails(context, 'Clasicos');
               },
             ),
             CategoryItem(
               categoryName: 'Premiun',
-              imageName: 'gojo.jpeg',
+              imageName: 'logo.jpeg',
               onTap: () {
                 navigateToCategoryDetails(context, 'Premiun');
               },
             ),
             CategoryItem(
               categoryName: 'Bebidas',
-              imageName: 'keto.jpeg',
+              imageName: 'logo.jpeg',
               onTap: () {
                 navigateToCategoryDetails(context, 'Bebidas');
               },
