@@ -7,60 +7,53 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sándwich Delicias Variadas'),
+        automaticallyImplyLeading: false,
+        title: Text(
+          'Bocados Raps',
+          style: TextStyle(
+            fontSize: 28,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+            letterSpacing: 1.0,
+          ),
+        ),
+        backgroundColor: Colors.blue,
+        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // Título del negocio y pequeña descripción
-            Container(
-              padding: EdgeInsets.all(16.0),
-              decoration: BoxDecoration(
-                color: Colors
-                    .blue, // Puedes ajustar el color según tus preferencias
-                borderRadius: BorderRadius.circular(15.0), // Bordes redondeados
-              ),
-              child: Center(
-                child: Text(
-                  'Sándwich Delicias Variadas',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Colors
-                        .white, // Puedes ajustar el color según tus preferencias
-                  ),
-                ),
-              ),
-            ),
             SizedBox(height: 10),
             Text(
-              'Explora el mundo del sabor con Sándwich Delicias Variadas! Desde clásicos reconfortantes hasta creaciones audaces, ofrecemos una experiencia única para los amantes de los sabores. ¡Sumérgete en nuestro menú diverso y descubre la magia entre dos rebanadas!',
+              'Explora el mundo del sabor con Bocados Raps! Desde clásicos reconfortantes hasta creaciones audaces, ofrecemos una experiencia única para los amantes de los sabores. ¡Sumérgete en nuestro menú diverso y descubre la magia entre dos rebanadas!',
               style: TextStyle(
-                fontSize: 16,
-                color: Colors
-                    .grey, // Puedes ajustar el color según tus preferencias
+                fontSize: 18,
+                color: Colors.grey[700],
+                fontStyle: FontStyle.italic,
+                height: 1.5,
+                
               ),
             ),
-            SizedBox(height: 20), // Espaciado entre el texto y las categorías
+            SizedBox(height: 20),
             CategoryItem(
-              categoryName: 'Clasicos',
-              imageName: 'logo.png',
+              categoryName: 'Clásicos',
+              imageName: 'clasi.png',
               onTap: () {
-                navigateToCategoryDetails(context, 'Clasicos');
+                navigateToCategoryDetails(context, 'Clásicos');
               },
             ),
             CategoryItem(
-              categoryName: 'Premiun',
-              imageName: 'logo.jpeg',
+              categoryName: 'Premium',
+              imageName: 'premiun.png',
               onTap: () {
-                navigateToCategoryDetails(context, 'Premiun');
+                navigateToCategoryDetails(context, 'Premium');
               },
             ),
             CategoryItem(
               categoryName: 'Bebidas',
-              imageName: 'logo.jpeg',
+              imageName: 'bebidas.png',
               onTap: () {
                 navigateToCategoryDetails(context, 'Bebidas');
               },
@@ -75,7 +68,8 @@ class HomeScreen extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => CategoryDetailsScreen(categoryName: category, categoryImage: '',),
+        builder: (context) =>
+            CategoryDetailsScreen(categoryName: category, categoryImage: ''),
       ),
     );
   }
