@@ -13,24 +13,24 @@ class _RecuperarSanguchitosState extends State<RecuperarSanguchitos> {
   final TextEditingController _emailController = TextEditingController();
 
   Future<void> _resetPassword(String email) async {
-  try {
-    await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
-    // Aquí puedes mostrar un mensaje de éxito o redirigir a otra pantalla
-    print('Se ha enviado un correo electrónico para restablecer la contraseña');
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      // Aquí puedes mostrar un mensaje de éxito o redirigir a otra pantalla
+      print('Se ha enviado un correo electrónico para restablecer la contraseña');
 
-    // Redirigir a otra pantalla después de enviar el correo de recuperación
-    Navigator.pushReplacementNamed(context, '/Login.dart');
-  } catch (e) {
-    // Manejar errores, como por ejemplo si el correo no está registrado
-    print('Error al enviar el correo para restablecer la contraseña: $e');
+      // Redirigir a otra pantalla después de enviar el correo de recuperación
+      Navigator.pushReplacementNamed(context, '/Login.dart');
+    } catch (e) {
+      // Manejar errores, como por ejemplo si el correo no está registrado
+      print('Error al enviar el correo para restablecer la contraseña: $e');
+    }
   }
-}
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Recuperar Sanguchitos'),
+        title: const Text('Recuperar Contraseña'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -39,6 +39,13 @@ class _RecuperarSanguchitosState extends State<RecuperarSanguchitos> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              Image.asset(
+                'assets/Bocados.png', // Ruta de tu imagen en assets
+                width: 100, // Ancho de la imagen
+                height: 100, // Alto de la imagen
+                // Ajusta el ancho y alto según lo necesites
+              ),
+              SizedBox(height: 20), // Añade este SizedBox para el espacio
               const Text(
                 'Recuperar Contraseña',
                 style: TextStyle(

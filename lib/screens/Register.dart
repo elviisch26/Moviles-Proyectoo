@@ -17,20 +17,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
   String _email = "";
   String _password = "";
 
- void _handleSignUp() async {
-  try {
-    UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
-      email: _email,
-      password: _password,
-    );
-    print("User Registered ${userCredential.user!.email}");
+  void _handleSignUp() async {
+    try {
+      UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
+        email: _email,
+        password: _password,
+      );
+      print("User Registered ${userCredential.user!.email}");
 
-    // Redireccionar al usuario a la pantalla de inicio de sesión después del registro exitoso
-    Navigator.pushReplacementNamed(context, '/Login.dart');
-  } catch (e) {
-    print("Error During Registration: $e");
+      // Redireccionar al usuario a la pantalla de inicio de sesión después del registro exitoso
+      Navigator.pushReplacementNamed(context, '/Login.dart');
+    } catch (e) {
+      print("Error During Registration: $e");
+    }
   }
-}
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +45,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Image.asset(
+                'assets/Bocados.png', // Ruta de tu imagen en assets
+                width: 100, // Ancho de la imagen
+                height: 100, // Alto de la imagen
+                // Puedes ajustar el ancho y el alto según lo necesites
+              ),
+              const SizedBox(height: 20),
               const Text(
                 "Registrarse",
                 style: TextStyle(

@@ -51,6 +51,13 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+                Image.asset(
+                'assets/Bocados.png', // Ruta de tu imagen en assets
+                width: 100, // Ancho de la imagen
+                height: 100, // Alto de la imagen
+                // Puedes ajustar el ancho y el alto según lo necesites
+              ),
+              const SizedBox(height: 20),
               const Text(
                 "Inicio de Sesión",
                 style: TextStyle(
