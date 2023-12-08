@@ -23,7 +23,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
             children: [
               // Logo Image
               Image.asset(
-                'assets/logo.png', // Adjust the path accordingly
+                'logo.png', // Adjust the path accordingly
                 width: 250, // Adjust the width as needed
                 height: 200, // Adjust the height as needed
                 // You can add more properties like fit, alignment, etc.

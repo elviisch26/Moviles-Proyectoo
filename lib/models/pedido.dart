@@ -18,71 +18,65 @@ class Pedido {
 final clasicos = [
   Pedido(
     id: 1,
-    nombre: "Sanguchito de Pollo",
+    nombre: "Americano",
     precio: 6.25,
     imagen: "assets/sam1.jpeg",
-    descripcion: "Pan, pollo, lechuga, tomate, mayonesa, mostaza, ketchup, queso"
+    descripcion: "Pancito con queso manaba tamaño XL siempre fresquito DEL DÍA, tocinos, cheddarcito, lechuga, tomate, salsita artesanal de albahaca🌱"
   ),
   Pedido(
     id: 2,
-    nombre: "Sanguchito de Carne",
-    precio: 6.25,
+    nombre: "Dos pisos",
+    precio: 5.55,
     imagen: "assets/sam2.jpeg",
-    descripcion: "Pan, carne, lechuga, tomate, mayonesa, mostaza, ketchup, queso"
+    descripcion: "Pancito con queso manaba tamaño XL siempre fresquito DEL DÍA, Jamón o mortadela, cheddarcito, salami, lechuga, tomate, salsita artesanal de albahaca🌱"
   ),
   Pedido(
     id: 3,
-    nombre: "Sanguchito de Jamón",
-    precio: 6.25,
+    nombre: "Rechicken bechamel",
+    precio: 6.95,
     imagen: "assets/sam3.jpeg",
-    descripcion: "Pan, jamón, lechuga, tomate, mayonesa, mostaza, ketchup, queso"
+    descripcion: "Pancito con queso manaba tamaño XL fresquito siempre DEL DÍA, pollito desmechadito, cheddar, salami, lechuga picadito, tomate, salsita bechamel"
   ),
 ];
 
 final premium = [
   Pedido(
     id: 4,
-    nombre: "Sanguchito de Pollo",
-    precio: 6.25,
+    nombre: "El tiktoker",
+    precio: 7.50,
     imagen: "assets/images/sanguchito1.jpg",
-    descripcion: "Pan, pollo, lechuga, tomate, mayonesa, mostaza, ketchup, queso"
+    descripcion: "Pancito con queso manaba tamaño XL fresquito DEL DÍA, filete de cerdo bañadito en bbq, capita de mozarella, salsita de cebolla con limón , lechuga, chifle crunchie pa tu corazón."
   ),
   Pedido(
     id: 5,
-    nombre: "Sanguchito de Carne",
-    precio: 6.25,
+    nombre: "La popular",
+    precio: 9.75,
     imagen: "assets/images/sanguchito2.jpg",
-    descripcion: "Pan, carne, lechuga, tomate, mayonesa, mostaza, ketchup, queso"
+    descripcion: "Pancito con queso manaba tamaño XL fresquito DEL DÍA, cerdo desmechadito bañado en bbq, queso holandés derretidito, corona de cebolla caramelizada, lechuga, chiflecito crunch"
   ),
   Pedido(
     id: 6,
-    nombre: "Sanguchito de Jamón",
-    precio: 6.25,
+    nombre: "Mi amor",
+    precio: 7.00,
     imagen: "assets/images/sanguchito3.jpg",
-    descripcion: "Pan, jamón, lechuga, tomate, mayonesa, mostaza, ketchup, queso"
+    descripcion: "Pancito con queso manaba tamaño XL fresquito DEL DÍA, pavo en albahaca,mozarella derretidita, lechuga, pasta de tomate romanticona, jamón de espalda"
   ),
 ];
 
 final bebidas = [
   Pedido(
     id: 7,
-    nombre: "Coca Cola",
-    precio: 1.50,
+    nombre: "Malteada de limón",
+    precio: 3.75,
     imagen: "assets/images/bebida1.jpg",
-    descripcion: "Coca Cola 500ml"
+    descripcion: "Chao a los batidos tradicionales HOLAAA AL limoncito ácido con un shot de leche condensada mixeado! ¡El cielo! 🌟"
   ),
   Pedido(
     id: 8,
-    nombre: "Inca Kola",
-    precio: 1.50,
+    nombre: "Malteada de maracuyá",
+    precio: 3.75,
     imagen: "assets/images/bebida2.jpg",
-    descripcion: "Inca Kola 500ml"
+    descripcion: "Chao a los batidos tradicionales HOLAAA AL maracuyá ácida con un shot de leche condensada mixeado! ¡El cielo! 🌟"
   ),
-  Pedido(
-    id: 9,
-    nombre: "Sprite",
-    precio: 1.50,
-    imagen: "assets/images/bebida3.jpg",
-    descripcion: "Sprite 500ml"
-  ),
+
 ];
