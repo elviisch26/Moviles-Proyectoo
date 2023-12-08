@@ -10,7 +10,7 @@ class CategoryDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Detalles de la Categoría'),
+        title: Text(' $categoryName'),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
