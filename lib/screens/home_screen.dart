@@ -7,7 +7,17 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sándwich Delicias Variadas'),
+        backgroundColor: Colors.blue,
+        title: Text(
+          'Bienvenido a Bcados Rappys',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        centerTitle: true, // Centra el título en la AppBar
+        automaticallyImplyLeading: false,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -15,52 +25,33 @@ class HomeScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             // Título del negocio y pequeña descripción
-            Container(
-              padding: EdgeInsets.all(16.0),
-              decoration: BoxDecoration(
-                color: Colors
-                    .blue, // Puedes ajustar el color según tus preferencias
-                borderRadius: BorderRadius.circular(15.0), // Bordes redondeados
-              ),
-              child: Center(
-                child: Text(
-                  'Sándwich Delicias Variadas',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Colors
-                        .white, // Puedes ajustar el color según tus preferencias
-                  ),
-                ),
-              ),
-            ),
             SizedBox(height: 10),
             Text(
               'Explora el mundo del sabor con Sándwich Delicias Variadas! Desde clásicos reconfortantes hasta creaciones audaces, ofrecemos una experiencia única para los amantes de los sabores. ¡Sumérgete en nuestro menú diverso y descubre la magia entre dos rebanadas!',
               style: TextStyle(
                 fontSize: 16,
-                color: Colors
-                    .grey, // Puedes ajustar el color según tus preferencias
+                color: Colors.grey,
+                fontStyle: FontStyle.italic,
               ),
             ),
             SizedBox(height: 20), // Espaciado entre el texto y las categorías
             CategoryItem(
               categoryName: 'Clasicos',
-              imageName: 'logo.png',
+              imageName: 'clasi.png',
               onTap: () {
                 navigateToCategoryDetails(context, 'Clasicos');
               },
             ),
             CategoryItem(
               categoryName: 'Premiun',
-              imageName: 'logo.jpeg',
+              imageName: 'premiun.png',
               onTap: () {
                 navigateToCategoryDetails(context, 'Premiun');
               },
             ),
             CategoryItem(
               categoryName: 'Bebidas',
-              imageName: 'logo.jpeg',
+              imageName: 'bebidas.png',
               onTap: () {
                 navigateToCategoryDetails(context, 'Bebidas');
               },
@@ -75,7 +66,10 @@ class HomeScreen extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => CategoryDetailsScreen(categoryName: category, categoryImage: '',),
+        builder: (context) => CategoryDetailsScreen(
+          categoryName: category,
+          categoryImage: '',
+        ),
       ),
     );
   }

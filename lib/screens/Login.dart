@@ -42,120 +42,122 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Login"),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
                 Image.asset(
-                'assets/Bocados.png', // Ruta de tu imagen en assets
-                width: 100, // Ancho de la imagen
-                height: 100, // Alto de la imagen
-                // Puedes ajustar el ancho y el alto según lo necesites
-              ),
-              const SizedBox(height: 20),
-              const Text(
-                "Inicio de Sesión",
-                style: TextStyle(
-                  fontSize: 36,
-                  fontWeight: FontWeight.bold,
+                  'assets/OIG.png',
+                  width: MediaQuery.of(context).size.width * 0.4,
+                  height: MediaQuery.of(context).size.width * 0.4,
                 ),
-              ),
-              const SizedBox(height: 30),
-              TextFormField(
-                controller: _emailController,
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                  labelText: "Correo",
-                  prefixIcon: Icon(Icons.email),
-                  border: OutlineInputBorder(),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "Por favor, introduzca su correo";
-                  }
-                  return null;
-                },
-                onChanged: (value) {
-                  setState(() {
-                    _email = value;
-                  });
-                },
-              ),
-              const SizedBox(height: 20),
-              TextFormField(
-                controller: _passController,
-                obscureText: true,
-                decoration: const InputDecoration(
-                  labelText: "Contraseña",
-                  prefixIcon: Icon(Icons.lock),
-                  border: OutlineInputBorder(),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "Por favor, introduzca su contraseña";
-                  }
-                  return null;
-                },
-                onChanged: (value) {
-                  setState(() {
-                    _password = value;
-                  });
-                },
-              ),
-              const SizedBox(height: 20),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => RecuperarSanguchitos(),
-                    ),
-                  );
-                },
-                child: Text(
-                  '¿Olvidaste tu contraseña? Recupérala aquí',
+                const SizedBox(height: 20),
+                const Text(
+                  "Inicio de Sesión",
                   style: TextStyle(
-                    color: Colors.blue,
-                    decoration: TextDecoration.underline,
+                    fontSize: 36,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-              ),
-              const SizedBox(height: 30),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      _handleLogin();
+                const SizedBox(height: 30),
+                TextFormField(
+                  controller: _emailController,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    labelText: "Correo",
+                    prefixIcon: Icon(Icons.email),
+                    border: OutlineInputBorder(),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Por favor, introduzca su correo";
                     }
+                    return null;
                   },
-                  child: const Text("Enviar"),
+                  onChanged: (value) {
+                    setState(() {
+                      _email = value;
+                    });
+                  },
                 ),
-              ),
-              const SizedBox(height: 20),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => SignUpScreen(),
+                const SizedBox(height: 20),
+                TextFormField(
+                  controller: _passController,
+                  obscureText: true,
+                  decoration: const InputDecoration(
+                    labelText: "Contraseña",
+                    prefixIcon: Icon(Icons.lock),
+                    border: OutlineInputBorder(),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Por favor, introduzca su contraseña";
+                    }
+                    return null;
+                  },
+                  onChanged: (value) {
+                    setState(() {
+                      _password = value;
+                    });
+                  },
+                ),
+                const SizedBox(height: 20),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => RecuperarSanguchitos(),
+                      ),
+                    );
+                  },
+                  child: Text(
+                    '¿Olvidaste tu contraseña? Recupérala aquí',
+                    style: TextStyle(
+                      color: Colors.blue,
+                      decoration: TextDecoration.underline,
                     ),
-                  );
-                },
-                child: Text(
-                  '¿No tienes cuenta? Regístrate aquí',
-                  style: TextStyle(
-                    color: Colors.blue,
-                    decoration: TextDecoration.underline,
                   ),
                 ),
-              ),
-            ],
+                const SizedBox(height: 30),
+                Center(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        _handleLogin();
+                      }
+                    },
+                    child: const Text("Enviar"),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Center(
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SignUpScreen(),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      '¿No tienes cuenta? Regístrate aquí',
+                      style: TextStyle(
+                        color: Colors.blue,
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

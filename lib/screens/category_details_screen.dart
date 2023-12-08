@@ -153,7 +153,7 @@ class _CartScreenState extends State<CartScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
+Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Carrito de compras'),
@@ -164,7 +164,7 @@ class _CartScreenState extends State<CartScreen> {
           children: [
             Expanded(
               child: ListView.builder(
-                itemCount: _cartItems.length,
+                itemCount: widget.cartItems.length,
                 itemBuilder: (context, index) {
                   return Card(
                     child: Padding(
@@ -176,8 +176,8 @@ class _CartScreenState extends State<CartScreen> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(_cartItems[index]['name']),
-                              Text('\$${_cartItems[index]['price']}'),
+                              Text(widget.cartItems[index]['name']),
+                              Text('\$${widget.cartItems[index]['price']}'),
                             ],
                           ),
                           Spacer(),
@@ -185,7 +185,7 @@ class _CartScreenState extends State<CartScreen> {
                             icon: Icon(Icons.remove_circle),
                             onPressed: () => _removeItem(index),
                           ),
-                          Text('${_cartItems[index]['quantity']}'),
+                          Text('${widget.cartItems[index]['quantity']}'),
                           IconButton(
                             icon: Icon(Icons.add_circle),
                             onPressed: () => _incrementQuantity(index),
@@ -215,22 +215,23 @@ class _CartScreenState extends State<CartScreen> {
                 Text('\$${calculateSubtotal().toStringAsFixed(2)}'),
               ],
             ),
-            MaterialButton(
-              color: Colors.blue,
-              child: Text('Continuar'),
+            ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ConfirmationScreen(cartItems: _cartItems)),
+                // Ir a la pantalla de confirmación cuando se hace clic en este botón
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => ConfirmationScreen(cartItems: widget.cartItems),
+                  ),
                 );
-                // Aquí puedes implementar la lógica para continuar con la compra
               },
+              child: Text('Continuar'),
             ),
           ],
         ),
       ),
     );
   }
+
 }
 
 List<Map<String, dynamic>> _cartItems=[];

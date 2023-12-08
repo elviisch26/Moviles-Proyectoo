@@ -29,62 +29,61 @@ class _RecuperarSanguchitosState extends State<RecuperarSanguchitos> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Recuperar Contraseña'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Image.asset(
-                'assets/Bocados.png', // Ruta de tu imagen en assets
-                width: 100, // Ancho de la imagen
-                height: 100, // Alto de la imagen
-                // Ajusta el ancho y alto según lo necesites
-              ),
-              SizedBox(height: 20), // Añade este SizedBox para el espacio
-              const Text(
-                'Recuperar Contraseña',
-                style: TextStyle(
-                  fontSize: 36,
-                  fontWeight: FontWeight.bold,
+      appBar: AppBar(),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Image.asset(
+                  'assets/OIG.png',
+                  width: MediaQuery.of(context).size.width * 0.4,
+                  height: MediaQuery.of(context).size.width * 0.4,
                 ),
-              ),
-              const SizedBox(height: 30),
-              TextFormField(
-                controller: _emailController,
-                keyboardType: TextInputType.emailAddress,
-                decoration: const InputDecoration(
-                  labelText: 'Correo electrónico',
-                  prefixIcon: Icon(Icons.email),
-                  border: OutlineInputBorder(),
+                SizedBox(height: 20),
+                const Text(
+                  "Recuperar",
+                  style: TextStyle(
+                    fontSize: 36,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Por favor, ingrese su correo electrónico';
-                  }
-                  if (!RegExp(r'\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b').hasMatch(value)) {
-                    return 'Por favor, ingrese un correo electrónico válido';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 20),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      _resetPassword(_emailController.text);
+                const SizedBox(height: 30),
+                TextFormField(
+                  controller: _emailController,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: const InputDecoration(
+                    labelText: 'Correo electrónico',
+                    prefixIcon: Icon(Icons.email),
+                    border: OutlineInputBorder(),
+                  ),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Por favor, ingrese su correo electrónico';
                     }
+                    if (!RegExp(r'\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b').hasMatch(value)) {
+                      return 'Por favor, ingrese un correo electrónico válido';
+                    }
+                    return null;
                   },
-                  child: const Text('Recuperar'),
                 ),
-              ),
-            ],
+                const SizedBox(height: 20),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        _resetPassword(_emailController.text);
+                      }
+                    },
+                    child: const Text('Recuperar'),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
