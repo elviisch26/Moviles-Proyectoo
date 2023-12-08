@@ -13,15 +13,18 @@ class _RecuperarSanguchitosState extends State<RecuperarSanguchitos> {
   final TextEditingController _emailController = TextEditingController();
 
   Future<void> _resetPassword(String email) async {
-    try {
-      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
-      // Aquí puedes mostrar un mensaje de éxito o redirigir a otra pantalla
-      print('Se ha enviado un correo electrónico para restablecer la contraseña');
-    } catch (e) {
-      // Manejar errores, como por ejemplo si el correo no está registrado
-      print('Error al enviar el correo para restablecer la contraseña: $e');
-    }
+  try {
+    await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+    // Aquí puedes mostrar un mensaje de éxito o redirigir a otra pantalla
+    print('Se ha enviado un correo electrónico para restablecer la contraseña');
+
+    // Redirigir a otra pantalla después de enviar el correo de recuperación
+    Navigator.pushReplacementNamed(context, '/Login.dart');
+  } catch (e) {
+    // Manejar errores, como por ejemplo si el correo no está registrado
+    print('Error al enviar el correo para restablecer la contraseña: $e');
   }
+}
 
   @override
   Widget build(BuildContext context) {

@@ -17,18 +17,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
   String _email = "";
   String _password = "";
 
-  void _handleSignUp() async {
-    try {
-      UserCredential userCredential =
-          await _auth.createUserWithEmailAndPassword(
-        email: _email,
-        password: _password,
-      );
-      print("User Registered ${userCredential.user!.email}");
-    } catch (e) {
-      print("Error During Registration: $e");
-    }
+ void _handleSignUp() async {
+  try {
+    UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
+      email: _email,
+      password: _password,
+    );
+    print("User Registered ${userCredential.user!.email}");
+
+    // Redireccionar al usuario a la pantalla de inicio de sesión después del registro exitoso
+    Navigator.pushReplacementNamed(context, '/Login.dart');
+  } catch (e) {
+    print("Error During Registration: $e");
   }
+}
 
   @override
   Widget build(BuildContext context) {
